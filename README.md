@@ -1,8 +1,6 @@
-# React + Vite
+# BLOG PROJECT (MERN STACK)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+BACK END: https://github.com/PLE1V4/api-rest-node
+FRONT: END: https://github.com/PLE1V4/blog-front-end
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+RUN local mongoDB(Collection JSON can be found in the backenrepo inside database folder.
