@@ -14,14 +14,30 @@ export const Create = () => {
     
     let newArticle = form;
 
-    const {data,loading} = await Request(Global.url+"create", "POST", newArticle);
+    const {data} = await Request(Global.url+"create", "POST", newArticle);
 
     if(data.status === "success"){
       setResponse("saved");
     }else{
       setResponse("error");
     }
+
+    const fileInput = document.querySelector("#file");
     
+    if(data.status === "success" && fileInput.files[0]){
+      
+      const formData = new FormData();
+      formData.append('file',fileInput.files[0]);
+
+      const upload = await Request(Global.url+"upload-image/"+data.article._id, "POST", formData, true);
+
+      if(upload.data.status === "success"){
+        setResponse("saved");
+      }else{
+        setResponse("error");
+      }
+   
+    }    
   }
 
   return (
@@ -42,8 +58,8 @@ export const Create = () => {
           <textarea type="text" name="content" onChange={modified}/>
         </div>
         <div className='form-group'>
-          <label htmlFor="file0">Image: </label>
-          <input type="file" name="file0" id="file" />
+          <label htmlFor="file">Image: </label>
+          <input type="file" name="file" id="file" />
         </div>
         <input type='submit' value="save" className='btn btn-success'/>
       </form>

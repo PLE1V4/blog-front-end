@@ -1,4 +1,4 @@
-export const Request = async(url, methodToUse, tosaveData = "") => {
+export const Request = async(url, methodToUse, tosaveData = "", archivos = false) => {
 
     let loading = true;
 
@@ -13,11 +13,23 @@ export const Request = async(url, methodToUse, tosaveData = "") => {
     }
 
     if (methodToUse == "POST" || methodToUse == "PUT") {
-        options = {
-            method: methodToUse,            
-            headers: { "Content-Type": "application/json"},
-            body: JSON.stringify(tosaveData)
-        };
+
+        let body = JSON.stringify(tosaveData);
+
+        if(archivos){
+            options = {
+                method: methodToUse,   
+                body: tosaveData
+            };
+        }else{
+            options = {
+                method: methodToUse,            
+                headers: { "Content-Type": "application/json"},
+                body: body
+            };
+        }
+
+        
     }
 
     const response = await fetch(url, options);
